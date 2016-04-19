@@ -71,7 +71,6 @@ void main()
 				cout << "\nВ начало (f) или в конец (l)?\nКоманда: ";
 				cin >> control_add;
 			}
-
 			if (control_add == 'f') //Добавление в начало
 			{
 				pointer->list::add(data); //Вызов функции всегда из класса list
@@ -80,7 +79,6 @@ void main()
 			{
 				pointer->add(data); //Вызов функции в зависимости от типа списка
 			}
-
 			break;
 
 		case 2: //Удаление элемента
@@ -114,6 +112,8 @@ void main()
 		}
 
 		cout << endl;
-		system("pause"); //Пауза работы программы, до нажатия любой клавиши
+		int(*p)(const char*);
+		p = system;
+		p("pause"); //Пауза работы программы, до нажатия любой клавиши
 	}
 }
