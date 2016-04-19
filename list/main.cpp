@@ -3,7 +3,6 @@
 #include "header.h"
 
 using namespace std;
-//test
 int item::summ = 0; //Установление счётчика в ноль
 
 void main()
