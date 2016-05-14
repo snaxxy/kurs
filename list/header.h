@@ -18,7 +18,7 @@ item* operator+(item, item);
 
 //Заранее объявляем классы
 class stack;
-class turn;
+class queue;
 class deck;
 
 //Абстрактный базовый класс
@@ -42,7 +42,7 @@ public:
 
 	//Объявляем друзей класса list, чтобы они видели "приватные" компоненты
 	friend stack;
-	friend turn;
+	friend queue;
 	friend deck;
 };
 
@@ -57,19 +57,19 @@ public:
 	~stack(){} //Деструктор
 };
 
-//Класс, описывающий тип списка turn
-class turn : virtual public list //Виртуально наследует абстрактный класс list
+//Класс, описывающий тип списка queue
+class queue : virtual public list //Виртуально наследует абстрактный класс list
 {
 public:
-	turn(double data = NULL); //Конструктор
+	queue(double data = NULL); //Конструктор
 	
 	void del(); //Метод
 
-	~turn(){} //Деструктор
+	~queue(){} //Деструктор
 };
 
 //Класс, описывающий тип списка deck
-class deck : public stack, public turn //Наследует классы stack и turn
+class deck : public stack, public queue //Наследует классы stack и queue
 {
 public:
 	deck(double data = NULL); //Конструктор

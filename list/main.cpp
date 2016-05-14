@@ -18,7 +18,7 @@ void main()
 	cin >> control;
 
 	stack arr_stack; //Создание объекта класса stack
-	turn arr_turn; //Создание объекта класса turn
+	queue arr_queue; //Создание объекта класса queue
 	deck arr_deck; //Создание объекта класса deck
 
 	list *pointer = NULL; //Создание и инициализация NULL-ом указателя базового класса
@@ -30,7 +30,7 @@ void main()
 	}
 	else if (control == 2)
 	{
-		pointer = &arr_turn;
+		pointer = &arr_queue;
 	}
 	else if (control == 3)
 	{
@@ -64,7 +64,7 @@ void main()
 		case 0: //Выход
 			//Деструкторы
 			arr_stack.~stack();
-			arr_turn.~turn();
+			arr_queue.~queue();
 			arr_deck.~deck();
 			return;
 

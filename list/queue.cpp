@@ -3,7 +3,7 @@
 #include "header.h"
 
 //Конструктор
-turn::turn(double data)
+queue::queue(double data)
 {
 	previous = NULL;
 	info = data;
@@ -11,7 +11,7 @@ turn::turn(double data)
 }
 
 //Функция удаления элемента из списка
-void turn::del()
+void queue::del()
 {
 	if (last_item) //Проверка на существование последнего элемента
 	{
