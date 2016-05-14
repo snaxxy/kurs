@@ -28,24 +28,3 @@ void stack::del()
 	else cout << "Список пуст.\n";
 }
 
-/*
-stack::~stack()
-{
-	return;
-	
-	delete[] first_item;
-	delete[] last_item;
-
-	return;
-
-	item *temp = last_item->previous;
-
-	for (int i = 1; i <= summ; i++)
-	{
-		temp->next->next = NULL;
-		temp->next->previous = NULL;
-
-		temp = temp->previous;
-	}
-}
-*/
