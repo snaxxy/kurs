@@ -4,15 +4,13 @@
 
 using namespace std;
 
-int item::summ = 0; //Установление счётчика в ноль
-
+int item::summ = 0; //Счетчик числа элементов
 void main()
 {
-	setlocale(LC_ALL, "russian"); //Добавление кириллицы в кодировку
-
+	setlocale(LC_ALL, "russian"); //Локаль
 	cout << "Списки\n\n";
 
-	int control; //Переменная, хранящая номер типа списка
+	int control; //выбранный тип
 	cout << "Выберите тип списка:\n1. Стек;\n2. Очередь;\n3. Дек.\n\nКоманда: ";
 	cin >> control;
 
@@ -20,9 +18,9 @@ void main()
 	queue arr_queue; //Создание объекта класса queue
 	deck arr_deck; //Создание объекта класса deck
 
-	list *pointer = NULL; //Инициализация пустого указателя на объект базового класса
+	list *pointer = NULL; //пустой указатель на объект родителя
 	
-	//Присвоение указателю адрес необходимого объекта
+	//переназначение указателя
 	if (control == 1)
 	{
 		pointer = &arr_stack; 
@@ -35,17 +33,17 @@ void main()
 	{
 		pointer = &arr_deck;
 	}
-	double (item::*ptr) = &item::info; //Создание и инициализация указателя на компонент info структуры item
-	pointer->*ptr = 666; //Присвоение значения нулевому элементу списка 
+	double (item::*ptr) = &item::info; //указатель на компонент структуры
+	pointer->*ptr = 666; //значение нулевого элемента
 
-	int(*ptr_fun)(const char*); //Создание указателя на функцию
-	ptr_fun = system; //Присовение указателя на функцию system
+	int(*funcPtr)(const char*); //Создание пустого указателя на функцию
+	funcPtr = system; //Присвоение ему адреса указателя на функцию system
 
-	//Начало основной интерфейсной функции
-	int command = -1; //Переменная, хранящая номер команды
+
+	int command = -1; //команда
 	while (command != 0)
 	{
-		ptr_fun("cls"); //Очистка экрана
+		funcPtr("cls"); //Очистка экрана
 
 		cout << "Список:\n";
 		pointer->display(); //Вывод на экран списка
@@ -56,18 +54,18 @@ void main()
 
 		char control_add = 'f'; //Куда вставлять символ. По умолчанию в начало
 		
-		//Переключатель
+		//switch case для многих вариантов
 		switch (command)
 		{
-		case 0: //Выход
+		case 0: //выход из программы
 			//Деструкторы
 			arr_stack.~stack();
 			arr_queue.~queue();
 			arr_deck.~deck();
 			return;
 
-		case 1: //Добавление
-			double data; //Данные, которые нужно добавить в новый элемент
+		case 1: //добавить элемент
+			double data; //значение добавляемого элемента
 			cout << "\nВведите значение элемента: ";
 			cin >> data;
 
@@ -77,57 +75,57 @@ void main()
 				cin >> control_add;
 			}
 
-			if (control_add == 'f') //Добавление в начало
+			if (control_add == 'f') //в начало
 			{
-				pointer->list::add(data); //Вызов функции всегда из класса list
+				pointer->list::add(data); //Вызов функции базового класса 
 			}
-			else if (control_add == 'l') //Добавление в конец
+			else if (control_add == 'l') //в конец
 			{
 				pointer->add(data); //Вызов функции в зависимости от типа списка
 			}
 
 			break;
 
-		case 2: //Удаление элемента
-			pointer->del(); //Вызов функции удаления
+		case 2: //удалить элемент
+			pointer->del(); //функция удаления соответствующего класса
 
 			break;
 
-		case 3: //Изменение данных, хранящихся в элементе списка
+		case 3: //изменить данные
 			int number; //Номер элемента
 			cout << "\nВведите номер элемента: ";
 			cin >> number;
 
-			pointer->change(number); //Вызов функции замены
+			pointer->change(number); //Вызов функции замены соответствующего класса
 			break;
 
-		case 4: //Поиск элемента по данным
-			double key; //Ключ поиска
+		case 4: //поиск по данным
+			double query; //Ключ поиска
 			cout << "\nВведите ключевое слово: ";
-			cin >> key;
+			cin >> query;
 
-			pointer->search(key); //Вызов функции поиска
+			pointer->search(query); //Вызов функции поиска соответствующего класса
 			break; 
 
-		case 5: //Сортировка
-			double control_sort; //Команда типа сортировки
+		case 5: //сортировка
+			double control_sort; //тип сортировки
 			cout << "\nПо возрастанию (1) или по убыванию (2)?\nКоманда: ";
 			cin >> control_sort;
 
-			pointer->sort(control_sort); //Вызов функции сортировки
+			pointer->sort(control_sort); //Вызов функции сортировки соответствующего класса
 			break;
 
-		case 6:
-			int key_1, key_2;
+		case 6: //сложить и добавить
+			int key_1, key_2; //номера элементов
 			cout << "\nВведите номера элементов:\n";
 			cin >> key_1;
 			cin >> key_2;
 
-			pointer->oper(key_1, key_2);
+			pointer->oper(key_1, key_2); //вызов функции сложения соответствующего класса
 			break;
 		}
 
 		cout << endl;
-		ptr_fun("pause"); //Пауза
+		funcPtr("pause"); //пауза через указатель
 	}
 }

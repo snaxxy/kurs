@@ -3,10 +3,10 @@
 
 #include <iostream>
 
-//Структура, описывающая элемент списка
+//элемент списка (структура)
 struct item
 {
-	static int summ; //Счётчик элементов
+	static int summ; //счетчик элементов
 		
 public:
 	item *previous; //Указатель на предыдущий элемент
@@ -16,7 +16,7 @@ public:
 
 item* operator+(item, item);
 
-//Заранее объявляем классы
+//прототип классов
 class stack;
 class queue;
 class deck;
@@ -29,9 +29,9 @@ class list : public item//Наследует структуру item
 	item *last_item = NULL; //Указатель на последний элемент
 
 public:
-	//Методы
+	//прототипы методов
 	virtual void add(double data = NULL); 
-	virtual void del() = 0; //Виртуальная функция
+	virtual void del() = 0; //виртуальная функция
 
 	void display();
 	void change(int key = NULL);
@@ -40,13 +40,13 @@ public:
 
 	void oper(int, int);
 
-	//Объявляем друзей класса list, чтобы они видели "приватные" компоненты
+	//друзья класса list, чтобы они видели "приватные" компоненты
 	friend stack;
 	friend queue;
 	friend deck;
 };
 
-//Класс, описывающий тип списка stack
+//прототип stack
 class stack : virtual public list //Виртуально наследует абстрактный класс list
 {
 public:
