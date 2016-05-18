@@ -1,37 +1,37 @@
-#ifndef listH
+п»ї#ifndef listH
 #define listH 1
 
 #include <iostream>
 
-//элемент списка (структура)
+//СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР° (СЃС‚СЂСѓРєС‚СѓСЂР°)
 struct item
 {
-	static int summ; //счетчик элементов
+	static int summ; //СЃС‡РµС‚С‡РёРє СЌР»РµРјРµРЅС‚РѕРІ
 		
 public:
-	item *previous; //Указатель на предыдущий элемент
-	double info; //Поле данных
-	item *next; //Указатель на следующий элемент
+	item *previous; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚
+	double info; //РџРѕР»Рµ РґР°РЅРЅС‹С…
+	item *next; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
 };
 
 item* operator+(item, item);
 
-//прототип классов
+//РїСЂРѕС‚РѕС‚РёРї РєР»Р°СЃСЃРѕРІ
 class stack;
 class queue;
 class deck;
 
-//Абстрактный базовый класс
-class list : public item//Наследует структуру item
+//РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ
+class list : public item//РќР°СЃР»РµРґСѓРµС‚ СЃС‚СЂСѓРєС‚СѓСЂСѓ item
 {
-	//"Приватные" компоненты
-	item *first_item = NULL; //Указатель на первый элемент
-	item *last_item = NULL; //Указатель на последний элемент
+	//"РџСЂРёРІР°С‚РЅС‹Рµ" РєРѕРјРїРѕРЅРµРЅС‚С‹
+	item *first_item = NULL; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+	item *last_item = NULL; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
 
 public:
-	//прототипы методов
+	//РїСЂРѕС‚РѕС‚РёРїС‹ РјРµС‚РѕРґРѕРІ
 	virtual void add(double data = NULL); 
-	virtual void del() = 0; //виртуальная функция
+	virtual void del() = 0; //РІРёСЂС‚СѓР°Р»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ
 
 	void display();
 	void change(int key = NULL);
@@ -40,45 +40,45 @@ public:
 
 	void oper(int, int);
 
-	//друзья класса list, чтобы они видели "приватные" компоненты
+	//РґСЂСѓР·СЊСЏ РєР»Р°СЃСЃР° list, С‡С‚РѕР±С‹ РѕРЅРё РІРёРґРµР»Рё "РїСЂРёРІР°С‚РЅС‹Рµ" РєРѕРјРїРѕРЅРµРЅС‚С‹
 	friend stack;
 	friend queue;
 	friend deck;
 };
 
-//прототип stack
-class stack : virtual public list //Виртуально наследует абстрактный класс list
+//РїСЂРѕС‚РѕС‚РёРї stack
+class stack : virtual public list //Р’РёСЂС‚СѓР°Р»СЊРЅРѕ РЅР°СЃР»РµРґСѓРµС‚ Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ list
 {
 public:
-	stack(double data = NULL); //Конструктор
+	stack(double data = NULL); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 
-	void del(); //Метод
+	void del(); //РњРµС‚РѕРґ
 
-	~stack(){} //Деструктор
+	~stack(){} //Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 };
 
-//Класс, описывающий тип списка queue
-class queue : virtual public list //Виртуально наследует абстрактный класс list
+//РљР»Р°СЃСЃ, РѕРїРёСЃС‹РІР°СЋС‰РёР№ С‚РёРї СЃРїРёСЃРєР° queue
+class queue : virtual public list //Р’РёСЂС‚СѓР°Р»СЊРЅРѕ РЅР°СЃР»РµРґСѓРµС‚ Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ list
 {
 public:
-	queue(double data = NULL); //Конструктор
+	queue(double data = NULL); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	
-	void del(); //Метод
+	void del(); //РњРµС‚РѕРґ
 
-	~queue(){} //Деструктор
+	~queue(){} //Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 };
 
-//Класс, описывающий тип списка deck
-class deck : public stack, public queue //Наследует классы stack и queue
+//РљР»Р°СЃСЃ, РѕРїРёСЃС‹РІР°СЋС‰РёР№ С‚РёРї СЃРїРёСЃРєР° deck
+class deck : public stack, public queue //РќР°СЃР»РµРґСѓРµС‚ РєР»Р°СЃСЃС‹ stack Рё queue
 {
 public:
-	deck(double data = NULL); //Конструктор
+	deck(double data = NULL); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 
-	//Методы
+	//РњРµС‚РѕРґС‹
 	void add(double data = NULL);
 	void del();
 
-	~deck(){} //Деструктор
+	~deck(){} //Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 };
 
 #endif
